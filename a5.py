@@ -106,17 +106,32 @@ class Board:
         Returns:
             a tuple of row, column index identifying the most constrained cell
         """
-        pass
+        min_length = 9 
+        min_row = 0
+        min_col = 0
 
-    def failure_test(self) -> bool:
-        """Check if we've failed to correctly fill out the puzzle. If we find a cell
+        for row in range(self.size):
+            for col in range(self.size):
+                cell = self.rows[row][col]
+                #print(f"{row}, {col}: {cell}")
+                if isinstance(cell, list):
+                    if len(cell) < min_length:
+                        min_lent = len(cell)
+                        min_row = row
+                        min_col = col
+        return(min_row,min_col)
+
+        
+        def failure_test(self) -> bool:
+            """Check if we've failed to correctly fill out the puzzle. If we find a cell
         that contains an [], then we have no more possibilities for the cell but haven't
         assigned it a value so fail.
 
         Returns:
             True if we have failed to fill out the puzzle, False otherwise
         """
-        pass
+        for row in range(self.size):
+            for col in range(self.size):
 
     def goal_test(self) -> bool:
         """Check if we've completed the puzzle (if we've placed all the numbers).
