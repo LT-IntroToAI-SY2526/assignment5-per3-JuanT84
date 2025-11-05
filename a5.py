@@ -122,7 +122,7 @@ class Board:
         return(min_row,min_col)
 
         
-        def failure_test(self) -> bool:
+    def failure_test(self) -> bool:
             """Check if we've failed to correctly fill out the puzzle. If we find a cell
         that contains an [], then we have no more possibilities for the cell but haven't
         assigned it a value so fail.
@@ -130,8 +130,15 @@ class Board:
         Returns:
             True if we have failed to fill out the puzzle, False otherwise
         """
-        for row in range(self.size):
-            for col in range(self.size):
+            min_length = 9 
+            min_row = 0
+            min_col = 0
+
+            for row in range(self.size):
+                for col in range(self.size):
+                    cell = self.rows[row][col]
+                    if isinstance(cell, list):
+                        if len(cell)< min_length:
 
     def goal_test(self) -> bool:
         """Check if we've completed the puzzle (if we've placed all the numbers).
